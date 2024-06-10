@@ -21,14 +21,14 @@ A balanced dataset ensures that each language is equally represented, which is c
 # 6. Modeling
 The modeling section involves building and training the classifiers:
 
-+ Feature Extraction using TF-IDF
+## Feature Extraction using TF-IDF
 TF-IDF (Term Frequency-Inverse Document Frequency) is used to transform the text data into numerical features:
 
 * char_vectorizer: Generates TF-IDF features based on character n-grams (2 to 4 characters).
 * word_vectorizer: Generates TF-IDF features based on word n-grams (1 to 2 words).
 * FeatureUnion: Combines both character and word TF-IDF features.
 
-+ Multinomial Naive Bayes (MNB)
+## Multinomial Naive Bayes (MNB)
 A pipeline is created to streamline the process:
 
 * Vectorizer: Combines character and word TF-IDF features.
@@ -36,7 +36,7 @@ A pipeline is created to streamline the process:
 * Training and Prediction: The model is trained on the training data and used to predict the language of the test data.
 * Accuracy Calculation: Accuracy of predictions is calculated.
 
-+ Logistic Regression (LR)
+## Logistic Regression (LR)
 Similar to MNB, a pipeline is created for Logistic Regression:
 
 * Vectorizer: Combines character and word TF-IDF features.
@@ -44,7 +44,7 @@ Similar to MNB, a pipeline is created for Logistic Regression:
 * Classifier: Logistic Regression.
 * Training and Prediction: The model is trained and used for prediction.
 
-+ Results
+## Results
 
 The performance of the models is evaluated using various metrics:
 
@@ -54,21 +54,21 @@ Provides precision, recall, and F1-score for each language. Reports are generate
 * Confusion Matrix
 Visualizes the performance by showing the true positives, true negatives, false positives, and false negatives for each language. This helps understand misclassifications.
 
-+ Dependencies
+## Dependencies
 
 The project requires the following libraries:
 
-string: For string manipulation.
-pandas: For data manipulation and analysis.
-numpy: For numerical operations.
-re: For regular expressions.
-requests: For sending HTTP requests.
-io: For working with streams.
-seaborn: For data visualization.
-matplotlib: For plotting.
-sklearn: For machine learning tools.
+* string: For string manipulation.
+* pandas: For data manipulation and analysis.
+* numpy: For numerical operations.
+* re: For regular expressions.
+* requests: For sending HTTP requests.
+* io: For working with streams.
+* seaborn: For data visualization.
+* matplotlib: For plotting.
+* sklearn: For machine learning tools.
 
-+ Usage
+## Usage
 
 To use the models for language detection:
 
