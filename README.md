@@ -44,7 +44,7 @@ Similar to MNB, a pipeline is created for Logistic Regression:
 * Classifier: Logistic Regression.
 * Training and Prediction: The model is trained and used for prediction.
 
-## Results
+# 7. Results
 
 The performance of the models is evaluated using various metrics:
 
@@ -54,7 +54,7 @@ Provides precision, recall, and F1-score for each language. Reports are generate
 * Confusion Matrix
 Visualizes the performance by showing the true positives, true negatives, false positives, and false negatives for each language. This helps understand misclassifications.
 
-## Dependencies
+# 8. Dependencies
 
 The project requires the following libraries:
 
@@ -68,7 +68,7 @@ The project requires the following libraries:
 * matplotlib: For plotting.
 * sklearn: For machine learning tools.
 
-## Usage
+# 9. Usage
 
 To use the models for language detection:
 
