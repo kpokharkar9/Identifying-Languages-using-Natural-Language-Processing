@@ -1,0 +1,25 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python artifacts
+.Python
+.env
+
+# Database files (optional, based on your project needs)
+*.db
+*.sqlite3
+
+# Models directory (optional, based on your project needs)
+models/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings (optional)
+.vscode/
