@@ -23,3 +23,6 @@ translation_app/models/
 
 # VS Code settings (optional)
 .vscode/
+
+# Ignore test translation script
+translation_app/app/test_translation.py
