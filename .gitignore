@@ -15,28 +15,8 @@ __pycache__/
 *.db
 *.sqlite3
 
-# Virtual environment
-venv/
-
-# Python cache files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Python artifacts
-.Python
-.env
-
 # Exclude local model files
 translation_app/models/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# VS Code settings (optional)
-.vscode/
-
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
