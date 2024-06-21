@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python artifacts
+.Python
+.env
+
+# Database files (optional, based on your project needs)
+*.db
+*.sqlite3
+
+# Exclude local model files
+translation_app/backend/models/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VS Code settings (optional)
+.vscode/
+
+# Ignore test translation script
+translation_app/backend/app/test_translation.py
+
+# Ignore macOS .DS_Store files
+.DS_Store
