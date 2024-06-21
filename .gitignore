@@ -29,3 +29,44 @@ translation_app/backend/app/test_translation.py
 
 # Ignore macOS .DS_Store files
 .DS_Store
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Other
+src/serviceWorker.js
+src/setupTests.js
+public/robots.txt
+public/manifest.json
+public/favicon.ico
+public/logo192.png
+public/logo512.png
+public/index.html
