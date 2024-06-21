@@ -1,7 +1,7 @@
 # translation_app/app/routes.py
 from flask import request, jsonify
 from flask_restful import Resource
-from app.translation import detect_and_translate
+from app.translation import detect_and_translate, detect_language
 import logging
 
 logger = logging.getLogger(__name__)
@@ -40,3 +40,25 @@ class Translate(Resource):
 def setup_routes(api):
     api.add_resource(Translate, '/translate')
 
+class DetectLanguage(Resource):
+    def post(self):
+        data = request.json
+        
+        if not data:
+            return jsonify({"error": "No input data provided"}), 400
+        
+        text = data.get('text')
+        
+        if not text:
+            return jsonify({"error": "Missing required parameter: text"}), 400
+        
+        try:
+            detected_lang = detect_language(text)
+            return jsonify({'detected_language': detected_lang})
+        except Exception as e:
+            logger.error(f"Error during language detection: {e}")
+            return jsonify({"error": "An error occurred during language detection"}), 500
+
+def setup_routes(api):
+    api.add_resource(Translate, '/translate')
+    api.add_resource(DetectLanguage, '/detect')
