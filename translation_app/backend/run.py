@@ -5,7 +5,7 @@ from flask_cors import CORS
 from flask_restful import Api
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
 
 api = Api(app)
 setup_routes(api)

@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 class Translate(Resource):
     def post(self):
         data = request.json
-        logger.info("Received translation request")
+        logger.info("Received translation request data: {data}")
         
         # Validate input data
         if not data:
@@ -40,6 +40,7 @@ class Translate(Resource):
 class DetectLanguage(Resource):
     def post(self):
         data = request.json
+        logging.info(f"Recieved detection request data: {data}")
         
         if not data:
             return jsonify({"error": "No input data provided"}), 400
