@@ -46,12 +46,15 @@ unsupported_languages = {"lv", "sl", "ro", "pt"}
 
 # Function to detect language
 def detect_language(text):
+    logger.info("Detecting language")
     preprocessed_text = preprocess_text(text)
     detected_language_name = pipe_mnb.predict([preprocessed_text])[0]
+    logger.info(f"Detected language: {detected_language_name})")
     return language_mapping.get(detected_language_name)
 
 # Function to load a translation model
 def load_model(src_lang, tgt_lang):
+    logger.info(f"Loading model for {src_lang} to {tgt_lang}")
     if src_lang == "en":
         model_dir = f"translation_app/models/translation_model/{tgt_lang}/{src_lang}-{tgt_lang}"
     else:
@@ -64,6 +67,7 @@ def load_model(src_lang, tgt_lang):
 
 # Function to perform translation
 def translate_text_local(text, src_lang, tgt_lang):
+    logger.info(f"Translating text locally from {src_lang} to {tgt_lang}")
     tokenizer, model = load_model(src_lang, tgt_lang)
     tokenized_text = tokenizer([text], return_tensors="pt", padding=True)
     translated_tokens = model.generate(**tokenized_text)
@@ -71,11 +75,13 @@ def translate_text_local(text, src_lang, tgt_lang):
     return translated_text
 
 # Function to perform translation using Google Translate API
-def translate_text_api(text, target_lang, api_key):
+def translate_text_api(text, src_lang, tgt_lang, api_key):
+    logger.info(f"Translating text using Google API from {src_lang} to {tgt_lang}")
     url = "https://translation.googleapis.com/language/translate/v2"
     params = {
         "q": text,
-        "target": target_lang,
+        "source": src_lang,
+        "target": tgt_lang,
         "key": api_key
     }
     response = requests.get(url, params=params)
@@ -84,20 +90,24 @@ def translate_text_api(text, target_lang, api_key):
 # Function to detect source language and translate
 def detect_and_translate(text, tgt_lang, api_key):
     src_lang = detect_language(text)
-    if src_lang == "en":
-        # Directly translate from English to target language
-        if tgt_lang in unsupported_languages:
-            return translate_text_api(text, tgt_lang, api_key)
+    logger.info(f"Source language detected as: {src_lang}")
+
+    try:
+        if src_lang == "en":
+            # Directly translate from English to the target language
+            if tgt_lang in unsupported_languages:
+                return translate_text_api(text, tgt_lang, api_key)
+            else:
+                return translate_text_local(text, src_lang, tgt_lang)
+        elif src_lang in unsupported_languages:
+            # Directly translate from unsupported source language to the target language
+            return translate_text_api(text, src_lang, tgt_lang, api_key)
         else:
-            return translate_text_local(text, src_lang, tgt_lang)
-    elif src_lang in unsupported_languages:
-        # Use API for unsupported languages
-        return translate_text_api(text, tgt_lang, api_key) + " -> " + translate_text_api(text, tgt_lang, api_key)
-    else:
-        # Translate from source language to English
-        text_in_english = translate_text_local(text, src_lang, 'en')
-        # Translate from English to target language
-        if tgt_lang in unsupported_languages:
-            return translate_text_api(text_in_english, tgt_lang, api_key)
-        else:
-            return translate_text_local(text_in_english, 'en', tgt_lang)
+            text_in_english = translate_text_local(text, src_lang, 'en')
+            if tgt_lang in unsupported_languages:
+                return translate_text_api(text_in_english, tgt_lang, api_key)
+            else:
+                return translate_text_local(text_in_english, 'en', tgt_lang)
+    except Exception as e:
+        logger.error(f"Error during translation: {e}")
+        raise
