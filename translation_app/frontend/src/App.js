@@ -21,6 +21,7 @@ function App() {
         body: JSON.stringify({ text }),
       });
       const data = await response.json();
+      console.log('Detection response:', data);
       setDetectedLang(data.detected_language);
     } catch (error) {
       console.error('Error detecting language:', error);
@@ -41,6 +42,7 @@ function App() {
         }),
       });
       const data = await response.json();
+      console.log('Translation response:',data);
       setTranslatedText(data.translated_text);
     } catch (error) {
       console.error('Error translating text:', error);
