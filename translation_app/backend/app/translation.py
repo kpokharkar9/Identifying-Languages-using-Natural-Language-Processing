@@ -96,7 +96,7 @@ def detect_and_translate(text, tgt_lang, api_key):
         if src_lang == "en":
             # Directly translate from English to the target language
             if tgt_lang in unsupported_languages:
-                return translate_text_api(text, tgt_lang, api_key)
+                return translate_text_api(text, src_lang, tgt_lang, api_key)
             else:
                 return translate_text_local(text, src_lang, tgt_lang)
         elif src_lang in unsupported_languages:
@@ -105,7 +105,7 @@ def detect_and_translate(text, tgt_lang, api_key):
         else:
             text_in_english = translate_text_local(text, src_lang, 'en')
             if tgt_lang in unsupported_languages:
-                return translate_text_api(text_in_english, tgt_lang, api_key)
+                return translate_text_api(text_in_english, src_lang, tgt_lang, api_key)
             else:
                 return translate_text_local(text_in_english, 'en', tgt_lang)
     except Exception as e:
