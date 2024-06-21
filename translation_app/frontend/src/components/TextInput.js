@@ -1,15 +1,20 @@
 import React from 'react';
 
-function TextInput({ text, setText }) {
+const TextInput = ({ text, setText }) => {
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
   return (
     <div>
-      <textarea
+      <input
+        type="text"
+        placeholder="Enter text"
         value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Enter text to detect and translate"
+        onChange={handleChange}
       />
     </div>
   );
-}
+};
 
 export default TextInput;
