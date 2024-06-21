@@ -50,7 +50,7 @@ def detect_language(text):
     preprocessed_text = preprocess_text(text)
     detected_language_name = pipe_mnb.predict([preprocessed_text])[0]
     logger.info(f"Detected language: {detected_language_name})")
-    return language_mapping.get(detected_language_name)
+    return detected_language_name
 
 # Function to load a translation model
 def load_model(src_lang, tgt_lang):
@@ -89,7 +89,7 @@ def translate_text_api(text, src_lang, tgt_lang, api_key):
 
 # Function to detect source language and translate
 def detect_and_translate(text, tgt_lang, api_key):
-    src_lang = detect_language(text)
+    src_lang = language_mapping.get(detect_language(text))
     logger.info(f"Source language detected as: {src_lang}")
 
     try:
