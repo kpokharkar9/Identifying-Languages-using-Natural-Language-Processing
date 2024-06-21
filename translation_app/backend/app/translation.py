@@ -18,7 +18,7 @@ def preprocess_text(line):
     return line
 
 # Load the detection model once
-detection_model_path = 'translation_app/models/detection_model/mnb_model_compressed.joblib'
+detection_model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'detection_model', 'mnb_model_compressed.joblib')
 pipe_mnb = joblib.load(detection_model_path)
 
 # Dictionary to map language names to language codes
@@ -56,9 +56,9 @@ def detect_language(text):
 def load_model(src_lang, tgt_lang):
     logger.info(f"Loading model for {src_lang} to {tgt_lang}")
     if src_lang == "en":
-        model_dir = f"translation_app/models/translation_model/{tgt_lang}/{src_lang}-{tgt_lang}"
+        model_dir = os.path.join(os.path.dirname(__file__), '..', 'models', 'translation_model', f'{tgt_lang}', f'{src_lang}-{tgt_lang}')
     else:
-        model_dir = f"translation_app/models/translation_model/{src_lang}/{src_lang}-{tgt_lang}"
+        model_dir = os.path.join(os.path.dirname(__file__), '..', 'models', 'translation_model', f'{src_lang}', f'{src_lang}-{tgt_lang}')
     tokenizer_path = os.path.join(model_dir, 'tokenizer.joblib')
     model_path = os.path.join(model_dir, 'model.joblib')
     tokenizer = joblib.load(tokenizer_path)
