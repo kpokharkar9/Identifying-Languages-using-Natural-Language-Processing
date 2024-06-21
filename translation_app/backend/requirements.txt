@@ -1,4 +1,5 @@
 aniso8601==9.0.1
+anyio==4.4.0
 blinker==1.8.2
 boolean.py==4.0
 CacheControl==0.14.0
@@ -16,16 +17,16 @@ Flask-RESTful==0.3.10
 Flask-Testing==0.8.1
 fsspec==2024.6.0
 googletrans==4.0.0rc1
-h11==0.9.0
+h11==0.14.0
 h2==3.2.0
 hpack==3.0.0
 hstspreload==2024.6.1
 html5lib==1.1
-httpcore==0.9.1
-httpx==0.13.3
+httpcore==1.0.5
+httpx==0.27.0
 huggingface-hub==0.23.4
 hyperframe==5.2.0
-idna==2.10
+idna==3.7
 iniconfig==2.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
