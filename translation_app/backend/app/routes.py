@@ -37,9 +37,6 @@ class Translate(Resource):
             logger.error(f"Exception: {str(e)}")
             return jsonify({"error": "An error occurred during translation"}), 500
 
-def setup_routes(api):
-    api.add_resource(Translate, '/translate')
-
 class DetectLanguage(Resource):
     def post(self):
         data = request.json
