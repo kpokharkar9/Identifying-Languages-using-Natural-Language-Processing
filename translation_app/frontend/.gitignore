@@ -34,3 +34,6 @@ public/favicon.ico
 public/logo192.png
 public/logo512.png
 public/index.html
+
+# Ignore all test files
+*.test.js
